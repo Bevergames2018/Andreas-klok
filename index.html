@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>CKV Klok</title>
+    <style>
+        body {
+            background-color: hsl(0, 50%, 50%);
+            overflow: hidden;
+            margin: 0px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function getSeconds() {
+                const d = new Date();
+                const hours = (d.getHours() >= 12) ? (d.getHours()-12) : d.getHours(); 
+                const totalSeconds = (hours * 3600) + (d.getMinutes() * 60) + d.getSeconds();
+                dec2color_update(totalSeconds);
+            }
+
+            function dec2color_update(dec){
+                var color = 0.008333333333 * dec;
+                document.body.style.backgroundColor = "hsl(" + color + ", 100%, 50%)";
+            };
+
+            setInterval(getSeconds, 1000);
+        });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
