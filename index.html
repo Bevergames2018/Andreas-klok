@@ -21,7 +21,8 @@
 
             function dec2color_update(dec){
                 var color = 5 / 600 * dec;
-                document.body.style.backgroundColor = "hsl(" + color + ", 100%, 50%)";
+                var lightness = ((dec % 3600) / 60) + 20;
+                document.body.style.backgroundColor = "hsl(" + color + ", 100%," + lightness + "%)";
             };
 
             setInterval(getSeconds, 1000);
