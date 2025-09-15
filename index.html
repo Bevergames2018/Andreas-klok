@@ -5,7 +5,7 @@
     <title>CKV Klok</title>
     <style>
         body {
-            background-color: hsl(0, 50%, 50%);
+            background-color: hsl(0, 0, 0);
             overflow: hidden;
             margin: 0px;
         }
@@ -20,7 +20,7 @@
             }
 
             function dec2color_update(dec){
-                var color = 0.008333333333 * dec;
+                var color = 5 / 600 * dec;
                 document.body.style.backgroundColor = "hsl(" + color + ", 100%, 50%)";
             };
 
