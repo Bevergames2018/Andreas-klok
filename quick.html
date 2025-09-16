@@ -1,0 +1,37 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Andreas Klok</title>
+    <style>
+        body {
+            background-color: hsl(0, 0, 0);
+            overflow: hidden;
+            margin: 0px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function getSeconds() {
+                const d = new Date();
+                const hours = (d.getHours() >= 12) ? (d.getHours()-12) : d.getHours(); 
+                const totalSeconds = ((hours * 3600) + (d.getMinutes() * 60) + d.getSeconds())*720;
+                while (totalSeconds > 43200) {
+                    totalSeconds -= 43200;
+                };
+                dec2color_update(totalSeconds);
+            }
+
+            function dec2color_update(dec){
+                var color = 5 / 600 * dec;
+                var lightness = 50 + (30 * Math.cos(((dec % 3600) / 60)*(Math.PI/30)));
+                document.body.style.backgroundColor = "hsl(" + color + ", 100%," + lightness + "%)";
+            };
+
+            setInterval(getSeconds, 1000);
+        });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
