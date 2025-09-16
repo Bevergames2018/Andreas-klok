@@ -15,7 +15,7 @@
             function getSeconds() {
                 const d = new Date();
                 const hours = (d.getHours() >= 12) ? (d.getHours()-12) : d.getHours(); 
-                const totalSeconds = ((hours * 3600) + (d.getMinutes() * 60) + d.getSeconds())*720;
+                var totalSeconds = ((hours * 3600) + (d.getMinutes() * 60) + d.getSeconds())*720;
                 while (totalSeconds > 43200) {
                     totalSeconds -= 43200;
                 };
@@ -28,7 +28,7 @@
                 document.body.style.backgroundColor = "hsl(" + color + ", 100%," + lightness + "%)";
             };
 
-            setInterval(getSeconds, 1000);
+            setInterval(getSeconds, 10);
         });
     </script>
   </head>
