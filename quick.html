@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>Andreas Klok</title>
     <style>
-        @-webkit-keyframes{
+        @-webkit-keyframes colorchange{
             0%     {background-color: hsl(0, 100%, 20%);}
             4.17%  {background-color: hsl(0, 100%, 80%);}
             8.33%  {background-color: hsl(15, 100%, 20%);}
@@ -67,26 +67,19 @@
             -webkit-animation: colorchange 60s infinite;
         }
     </style>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            function getSeconds() {
-                const d = new Date();
-                const hours = (d.getHours() >= 12) ? (d.getHours()-12) : d.getHours(); 
-                var totalSeconds = ((hours * 3600) + (d.getMinutes() * 60) + d.getSeconds())*720;
-                while (totalSeconds > 43200) {
-                    totalSeconds -= 43200;
-                };
-                dec2color_update(totalSeconds);
-            }
+        function syncCssAnimation() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const ms = now.getMilliseconds();
+            const delay = -(seconds + ms / 1000); // negatieve delay in seconden
+            document.body.style.animationDelay = `${delay}s`;
+            document.body.style.webkitAnimationDelay = `${delay}s`;
+        }
 
-            function dec2color_update(dec){
-                var color = 5 / 600 * dec;
-                var lightness = 50 + (30 * Math.cos(((dec % 3600) / 60)*(Math.PI/30)));
-                document.body.style.backgroundColor = "hsl(" + color + ", 100%," + lightness + "%)";
-            };
-
-            setInterval(getSeconds, 10);
-        });
+        syncCssAnimation();
+        setInterval(syncCssAnimation, 1000); // optioneel, om te corrigeren bij klokverschuiving
     </script>
   </head>
   <body>
